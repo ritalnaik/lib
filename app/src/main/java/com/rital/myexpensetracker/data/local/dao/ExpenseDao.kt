@@ -1,10 +1,12 @@
 package com.rital.myexpensetracker.data.local.dao
 
+import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.rital.myexpensetracker.data.local.entity.Expense
 
+@Dao
 interface ExpenseDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

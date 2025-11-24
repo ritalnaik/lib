@@ -46,12 +46,14 @@ data class Expense(
 
     companion object {
         const val TABLE_NAME = "expenses"
-
         const val COLUMN_ID = "id"
+        //income or expense
         const val COLUMN_TYPE = "expense_type"
         const val COLUMN_AMOUNT = "expense_amount"
         const val COLUMN_DATE = "expense_date"
+        //or can be referred as summary
         const val COLUMN_COMMENT = "expense_comment"
+        //food, travel, shopping etc
         const val COLUMN_CATEGORY = "expense_category"
         const val COLUMN_PAYMENT_MODE = "payment_mode"
     }

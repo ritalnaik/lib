@@ -23,18 +23,13 @@ import com.rital.myexpensetracker.R
 
 @Composable
 fun DropDown(
-    option: List<String> = listOf()
+    option: List<String> = listOf(),
+    selectedItem: String,
+    onItemSelected: (String) -> Unit
 ) {
-    // State to track if the dropdown menu is expanded (open)
     var expanded by remember { mutableStateOf(false) }
-
-    // State to track the currently selected option
-    var selectedOption by remember { mutableStateOf("Select Option") }
-
-    // List of available options
     val options = option
 
-    // The Box acts as a container for the clickable text and the dropdown menu
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -49,7 +44,7 @@ fun DropDown(
     ) {
         // 1. Clickable Element (The visible button/text)
         Text(
-            text = selectedOption,
+            text = selectedItem,
             modifier = Modifier
                 .fillMaxWidth()
                 .clickable(onClick = { expanded = true })
@@ -60,16 +55,14 @@ fun DropDown(
         // 2. The Dropdown Menu
         DropdownMenu(
             expanded = expanded, // Controls visibility
-            onDismissRequest = { expanded = false } // Closes when clicking outside
+            onDismissRequest = { expanded = !expanded } // Closes when clicking outside
         ) {
             // Loop through the options to create menu items
             options.forEach { selectionOption ->
                 DropdownMenuItem(
                     text = { Text(selectionOption) },
                     onClick = {
-                        // Update the selected value
-                        selectedOption = selectionOption
-                        // Close the menu
+                        onItemSelected(selectionOption)
                         expanded = false
                     }
                 )
